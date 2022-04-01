@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useEffect} from "react";
+
 import * as yup from "yup";
 import { useFormik } from "formik";
 
@@ -16,7 +17,6 @@ import { styled } from "@mui/material/styles";
 
 //routing
 import { useNavigate } from "react-router-dom";
-
 //material
 const LoginB = styled(Button)({
   background: "rgb(238,174,202)",
@@ -33,6 +33,17 @@ const LoginB = styled(Button)({
 export default function Login() {
   //nagtive
   let navigate = useNavigate();
+  //histry
+  //check first time or not in app 
+  useEffect(()=>{
+    const userInfor=localStorage.getItem("user")
+    if(userInfor)
+    {
+      console.log(userInfor);
+      navigate("create");
+    }
+  })
+
 
   //form validation
   const validationSchema = yup.object({
@@ -57,7 +68,8 @@ export default function Login() {
         const { data } = await Client.post("/signin", {
           ...values,
         });
-        console.log(data);
+        localStorage.setItem("user",JSON.stringify(data))
+             console.log(data);
         formik.resetForm();
       } catch (error) {
         if(error.response)
