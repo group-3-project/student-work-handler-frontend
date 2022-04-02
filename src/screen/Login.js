@@ -68,8 +68,7 @@ export default function Login() {
         const { data } = await Client.post("/signin", {
           ...values,
         });
-        localStorage.setItem("user",JSON.stringify(data))
-             console.log(data);
+        localStorage.setItem("user",JSON.stringify(data.message))
         formik.resetForm();
       } catch (error) {
         if(error.response)

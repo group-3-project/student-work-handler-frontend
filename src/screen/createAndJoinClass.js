@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Slide, Stack, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import axios from 'axios'
 import { styles } from './styles';
@@ -15,20 +15,33 @@ export function CreateAndJoin() {
 
     const [openCreateClassroomDialog, setCreateClassroomOpen] = React.useState(false);
     const [openJoinClassroomDialog, setJoinClassOpen] = React.useState(false);
-
+    let [classroomOwner, setClassroomOwner] = useState(" ");
     const [classroomData, setClassroom] = useState({
         classroomName: '',
     })
 
+
+    useEffect(()=>{
+        let userid=JSON.parse(localStorage.getItem("user"))
+         //class owner 
+         setClassroomOwner(classroomOwner=userid.id)
+    })
+
+
     let navigate = useNavigate();
 
     const createClassroom = (className) => {
+       
+
+
         //Conditions for a valid class name
         if (className.length > 0) {
 
             console.log("Creating Classroom with name: ", className);
+            console.log(" Classroom owner id: ", classroomOwner);
 
-            axios.post('http://localhost:3001/classrooms', classroomData).then((recievedResponse) => {
+
+            axios.post('http://localhost:3001/classrooms', {classroomData,classroomOwner}).then((recievedResponse) => {
 
                 setCreateClassroomOpen(false);
 
