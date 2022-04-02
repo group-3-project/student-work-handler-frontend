@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
+import "./sidebar.css";
 
+//dashboard page not of anyone use, don't do any changes
 export const createdClasses = [
     {
       id: "67890",

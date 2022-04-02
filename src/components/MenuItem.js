@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import "./sidebar.css";
 
+//menu ites in sidebar, use this
 const MenuItem = (props) => {
   const { name, subMenus, iconClassName, onClick, to, exact } = props;
   const [expand, setExpand] = useState(false);

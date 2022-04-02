@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from '../assets/logo/logo.png';
 import user from "../assets/user.png";
+import "./sidebar.css";
 
 import MenuItem from "./MenuItem";
 
