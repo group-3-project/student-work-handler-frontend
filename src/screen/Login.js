@@ -19,7 +19,7 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 //material
 const LoginB = styled(Button)({
-  background: "rgb(238,174,202)",
+  background: "black",
   "&:active": {
     boxShadow: "none",
     backgroundColor: "#0062cc",
